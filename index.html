@@ -60,12 +60,23 @@
         .container { max-width: 1200px; margin: 0 auto; padding: 50px 20px; }
         section { margin-bottom: 80px; background: var(--bg-surface); padding: 50px; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.05); }
         
-        /* 开屏大图 */
+/* 开屏大图 */
         .hero-section {
-            position: relative; overflow: hidden; min-height: 550px;
-            display: flex; align-items: center; justify-content: center;
-            border-radius: 16px; margin-bottom: 80px; border: 1px solid rgba(255,255,255,0.05);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15); padding: 40px;
+            position: relative; 
+            overflow: hidden; 
+            height: 100vh; /* 高度强制占满当前整个屏幕 */
+            width: 100vw; /* 宽度强制铺满整个屏幕 */
+            left: 50%;
+            transform: translateX(-50%); /* 突破原有的网页居中限制，向两边延展铺满 */
+            border-radius: 0; /* 取消原本的圆角，变成直角全屏 */
+            border: none; /* 取消原本的边框 */
+            margin-top: -50px; /* 向上移动抵消间距，让图片完美滑动到顶部导航栏的下方 */
+            margin-bottom: 80px;
+            display: flex; 
+            align-items: center; 
+            justify-content: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5); 
+            padding: 40px;
         }
         .hero-bg {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
