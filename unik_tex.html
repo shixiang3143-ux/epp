@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UNIK-Tex ePP Membrane Brochure</title>
+    <style>
+        /* 现代暗黑+生态环保绿主题 */
+        :root {
+            --bg-base: #121212;
+            --bg-surface: #1e1e1e;
+            --bg-surface-hover: #2a2a2a;
+            --primary-eco: #2ecc71;      /* 环保绿 */
+            --primary-dark: #27ae60;
+            --text-main: #e0e0e0;
+            --text-muted: #a0a0a0;
+            --border-color: #333333;
+            --transition-speed: 0.4s;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Microsoft YaHei';
+        }
+
+        body {
+            color: var(--text-main);
+            background-color: var(--bg-base);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* 语言切换核心逻辑 */
+        body.lang-zh .lang-en, body.lang-zh .lang-ru { display: none !important; }
+        body.lang-en .lang-zh, body.lang-en .lang-ru { display: none !important; }
+        body.lang-ru .lang-zh, body.lang-ru .lang-en { display: none !important; }
+
+        /* 特殊处理：俄文状态下显示英文的Footer */
+        body.lang-ru .footer-en { display: block !important; }
+
+        /* 导航栏 */
+        header {
+            background-color: rgba(30, 30, 30, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-img {
+            height: 45px;
+            width: auto;
+            object-fit: contain;
+            filter: drop-shadow(0 0 2px rgba(255,255,255,0.2)); /* 暗色背景下稍微提亮边缘 */
+        }
+
+        .lang-switch button {
+            background-color: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-muted);
+            padding: 6px 16px;
+            margin-left: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            border-radius: 20px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .lang-switch button:hover {
+            color: var(--text-main);
+            border-color: var(--primary-eco);
+            box-shadow: 0 0 10px rgba(46, 204, 113, 0.2);
+        }
+
+        .lang-switch button.active {
+            background-color: var(--primary-eco);
+            color: #121212;
+            border-color: var(--primary-eco);
+            box-shadow: 0 0 15px rgba(46, 204, 113, 0.4);
+        }
+
+        /* 滚动动画基础类 */
+        .animate-up {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .animate-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* 主要内容区 */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 50px 20px;
+        }
+
+        section {
+            margin-bottom: 80px;
+            background: var(--bg-surface);
+            padding: 50px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: var(--text-main);
+            margin-bottom: 20px;
+            text-align: center;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            color: var(--text-main);
+            margin-bottom: 25px;
+            border-bottom: 2px solid var(--primary-eco);
+            padding-bottom: 12px;
+            display: inline-block;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: var(--primary-eco);
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            font-weight: 500;
+        }
+
+        p {
+            margin-bottom: 18px;
+            font-size: 1.05rem;
+            color: var(--text-muted);
+        }
+
+        /* 强调文字 */
+        strong {
+            color: var(--text-main);
+        }
+        .text-eco {
+            color: var(--primary-eco) !important;
+            text-shadow: 0 0 8px rgba(46, 204, 113, 0.3);
+        }
+
+        /* 占位图样式升级 */
+        .image-placeholder {
+            width: 100%;
+            background-color: #1a1a1a;
+            border: 2px dashed var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            font-weight: 500;
+            text-align: center;
+            border-radius: 12px;
+            margin: 30px 0;
+            padding: 30px;
+            transition: all 0.3s ease;
+        }
+
+        .image-placeholder:hover {
+            border-color: var(--primary-eco);
+            color: var(--primary-eco);
+            background-color: rgba(46, 204, 113, 0.05);
+        }
+
+        .img-hero { min-height: 450px; font-size: 1.1rem; }
+        .img-detail { min-height: 250px; }
+
+        /* 表格样式暗黑化 */
+        .table-responsive {
+            overflow-x: auto;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.95rem;
+            background-color: var(--bg-surface);
+        }
+
+        th, td {
+            border: 1px solid var(--border-color);
+            padding: 18px 20px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #222;
+            color: var(--text-main);
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+        }
+
+        tr:nth-child(even) {
+            background-color: rgba(255,255,255,0.02);
+        }
+
+        tr:hover {
+            background-color: rgba(46, 204, 113, 0.05);
+        }
+
+        /* 应用场景网格动效 */
+        .app-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .app-card {
+            background-color: rgba(255,255,255,0.02);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 25px;
+            text-align: center;
+            transition: all var(--transition-speed);
+        }
+
+        .app-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary-eco);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.6), 0 0 15px rgba(46, 204, 113, 0.1);
+        }
+
+        .app-card h3 {
+            color: var(--text-main);
+            margin: 15px 0;
+            font-size: 1.3rem;
+        }
+
+        /* 底部页脚 */
+        footer {
+            background-color: #0a0a0a;
+            border-top: 1px solid var(--border-color);
+            padding: 60px 20px;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .footer-info {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .footer-info h3 {
+            color: var(--text-main);
+            margin-bottom: 25px;
+            letter-spacing: 1px;
+            font-size: 1.5rem;
+        }
+
+        .footer-info p {
+            color: var(--text-muted);
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+        }
+        
+        .footer-info strong {
+            color: var(--primary-eco);
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            section { padding: 30px 20px; border-radius: 12px; margin-bottom: 40px; }
+            h1 { font-size: 2rem; }
+            h2 { font-size: 1.5rem; }
+            .img-hero { min-height: 250px; }
+            .app-grid { gap: 20px; }
+        }
+    </style>
+</head>
+<body class="lang-zh">
+
+    <header>
+        <div class="nav-container">
+            <!-- 替换为客户提供的全新 Logo (Base64 内嵌格式) -->
+            <img src="data:image/png;base64,请将转换后的Base64代码粘贴到这里" alt="UNIK-Tex Logo" class="logo-img">
+            <div class="lang-switch">
+                <button id="btn-zh" class="active" onclick="switchLang('zh')">中</button>
+                <button id="btn-en" onclick="switchLang('en')">EN</button>
+                <button id="btn-ru" onclick="switchLang('ru')">RU</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        
+        <!-- Hero Section -->
+        <section class="animate-up">
+            <h1 class="lang-zh">新一代环保 ePP 微孔膜复合面料</h1>
+            <h1 class="lang-en">Next-Generation Eco-Friendly ePP Membrane Laminated Fabric</h1>
+            <h1 class="lang-ru">Экологичная Мембранная Ламинированная Ткань ePP Нового Поколения</h1>
+            
+            <div class="subtitle lang-zh">致力于合规、环保与防护性能平衡的创新解决方案</div>
+            <div class="subtitle lang-en">An innovative solution dedicated to balancing compliance, eco-friendliness, and protection.</div>
+            <div class="subtitle lang-ru">Инновационное решение для баланса соответствия стандартам, экологичности и защиты.</div>
+
+            <!-- 占位图 1：主视觉图 -->
+            <div class="image-placeholder img-hero">
+                <span class="lang-zh">[图片占位 1：建议放置宽幅的产品主视觉图或高质感的面料纹理图]</span>
+                <span class="lang-en">[Image Placeholder 1: Recommend a wide product key visual or high-quality fabric texture]</span>
+                <span class="lang-ru">[Место для изображения 1: Рекомендуется широкое главное изображение продукта или текстура ткани]</span>
+            </div>
+        </section>
+
+        <!-- 板块一：行业挑战 -->
+        <section class="animate-up">
+            <h2 class="lang-zh">行业挑战：PFAS 禁令下的技术断层</h2>
+            <h2 class="lang-en">Industry Challenge: Technical Gap Under PFAS Bans</h2>
+            <h2 class="lang-ru">Отраслевая Проблема: Технологический Разрыв в Условиях Запрета PFAS</h2>
+            
+            <p class="lang-zh">随着加州 AB1817 法案及欧盟 REACH 提案等国际环保法规的严苛推进，传统含氟 ePTFE 面料正面临全面的合规性退市风险。</p>
+            <p class="lang-en">With the strict advancement of international environmental regulations such as California's AB1817 bill and the EU's REACH proposal, traditional fluorine-containing ePTFE fabrics are facing comprehensive compliance risks and phase-out.</p>
+            <p class="lang-ru">С ужесточением международных экологических норм, таких как законопроект Калифорнии AB1817 и предложение ЕС REACH, традиционные фторсодержащие ткани ePTFE сталкиваются с риском запрета и поэтапного отказа.</p>
+
+            <p class="lang-zh">同时，市面常规无氟替代品面临“遇高温闭孔”、“手感僵硬”及“不耐水洗”等物理性能瓶颈。寻找一款完全合规且满足轻户外防护标准的微孔膜复合面料，成为品牌供应链的当务之急。</p>
+            <p class="lang-en">Meanwhile, conventional fluorine-free alternatives suffer from physical bottlenecks such as "pore closure at high temperatures", "stiff hand-feel", and "poor wash resistance". Finding a fully compliant microporous membrane fabric that meets light outdoor protection standards is an urgent priority for brand supply chains.</p>
+            <p class="lang-ru">В то же время, обычные безфторные альтернативы имеют физические недостатки, такие как «закрытие пор при высоких температурах», «жесткость на ощупь» и «плохая устойчивость к стирке». Поиск полностью соответствующей стандартам ткани с микропористой мембраной является приоритетом.</p>
+        </section>
+
+        <!-- 板块二：解决方案 -->
+        <section class="animate-up">
+            <h2 class="lang-zh">破局方案：UNIK-Tex 全环保研发路线</h2>
+            <h2 class="lang-en">Our Solution: UNIK-Tex All-Eco R&D Approach</h2>
+            <h2 class="lang-ru">Наше Решение: Полностью Экологичный Подход UNIK-Tex</h2>
+            
+            <p class="lang-zh">依托在功能性面料领域的深厚研发经验，丹东优耐特 (UNIK-Tex) 确立了“环保再生面料 + 超强无氟防水 + ePP微孔膜”的开发技术架构。</p>
+            <p class="lang-en">Relying on profound R&D experience in functional fabrics, UNIK-Tex has established a development architecture of "Eco-recycled Fabric + High-performance Fluorine-free DWR + ePP Microporous Membrane".</p>
+            <p class="lang-ru">Опираясь на глубокий опыт разработки функциональных тканей, UNIK-Tex создала архитектуру «Экологичная переработанная ткань + Высокоэффективная безфторная пропитка + Микропористая мембрана ePP».</p>
+
+            <p class="lang-zh">我们在厚度仅为 3.6μm 的微孔膜表面创新涂覆透湿PU树脂，形成双组份防护结构；并配合内层精准网布控胶工艺，成功在无氟体系下实现了透湿与耐水压性能的客观平衡。</p>
+            <p class="lang-en">We innovatively coated a moisture-permeable PU resin on the surface of the 3.6μm microporous membrane to form a bi-component protective structure. Combined with a precise glue control process on the inner mesh, we successfully achieved an objective balance between moisture permeability and hydrostatic pressure resistance in a fluorine-free system.</p>
+            <p class="lang-ru">Мы нанесли влагопроницаемую полиуретановую смолу на поверхность микропористой мембраны толщиной 3,6 мкм. В сочетании с точным контролем клея на внутренней сетке, мы достигли баланса между паропроницаемостью и водонепроницаемостью в системе без фтора.</p>
+            
+            <!-- 占位图 2：面料细节/工艺图 -->
+            <div class="image-placeholder img-detail">
+                <span class="lang-zh">[图片占位 2：建议放置 150D/260T 面料微观细节图或结构剖面图]</span>
+                <span class="lang-en">[Image Placeholder 2: Recommend microscopic detail or cross-section of 150D/260T fabric]</span>
+                <span class="lang-ru">[Место для изображения 2: Рекомендуется макроснимок или разрез ткани 150D/260T]</span>
+            </div>
+        </section>
+
+        <!-- 板块三：核心技术评估 -->
+        <section class="animate-up">
+            <h2 class="lang-zh">核心指标：客观技术评估 (ePTFE vs. ePP)</h2>
+            <h2 class="lang-en">Core Indicators: Objective Technical Assessment</h2>
+            <h2 class="lang-ru">Основные Показатели: Объективная Техническая Оценка</h2>
+
+            <p class="lang-zh">以下数据基于市场主流含氟 ePTFE 产品与星源环保 ePP（以主推3L复合面料为例）的客观对比，旨在为客户提供严谨的选型依据。</p>
+            <p class="lang-en">The following data is based on an objective comparison between mainstream fluorine-containing ePTFE products and our eco-friendly ePP (using 3L laminated fabric as an example), providing customers with a rigorous basis for selection.</p>
+            <p class="lang-ru">Следующие данные основаны на объективном сравнении основных фторсодержащих продуктов ePTFE и нашего экологичного ePP, предоставляя клиентам строгую основу для выбора.</p>
+
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>
+                                <span class="lang-zh">评估维度</span>
+                                <span class="lang-en">Assessment Dimension</span>
+                                <span class="lang-ru">Критерий Оценки</span>
+                            </th>
+                            <th>
+                                <span class="lang-zh">传统 ePTFE (参考主流含氟3L)</span>
+                                <span class="lang-en">Traditional ePTFE (Fluorine 3L)</span>
+                                <span class="lang-ru">Традиционный ePTFE (С фтором)</span>
+                            </th>
+                            <th>
+                                <span class="lang-zh">UNIK-Tex 环保ePP (3L复合面料)</span>
+                                <span class="lang-en">UNIK-Tex Eco-ePP (3L Laminated)</span>
+                                <span class="lang-ru">UNIK-Tex Eco-ePP (3L Ламинат)</span>
+                            </th>
+                            <th>
+                                <span class="lang-zh">客观技术与应用评估</span>
+                                <span class="lang-en">Objective Application Assessment</span>
+                                <span class="lang-ru">Объективная Оценка Применения</span>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <strong class="lang-zh">全球合规性</strong>
+                                <strong class="lang-en">Global Compliance</strong>
+                                <strong class="lang-ru">Глобальное Соответствие</strong>
+                            </td>
+                            <td>
+                                <span class="lang-zh">受欧美环保法规限制，面临禁用风险。</span>
+                                <span class="lang-en">Restricted by environmental regulations, facing ban risks.</span>
+                                <span class="lang-ru">Ограничено нормами, сталкивается с риском запрета.</span>
+                            </td>
+                            <td>
+                                <strong class="text-eco">
+                                    <span class="lang-zh">全环保路线，无氟化生产。</span>
+                                    <span class="lang-en">All-eco route, 100% fluorine-free.</span>
+                                    <span class="lang-ru">Полностью экологично, без фтора.</span>
+                                </strong>
+                            </td>
+                            <td>
+                                <span class="lang-zh">ePP 具备法规适应性，无合规风险，满足欧美准入。</span>
+                                <span class="lang-en">ePP has regulatory adaptability, meeting US/EU entry standards.</span>
+                                <span class="lang-ru">ePP соответствует нормам, отвечая стандартам доступа в США/ЕС.</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong class="lang-zh">环保与降解性</strong>
+                                <strong class="lang-en">Degradability</strong>
+                                <strong class="lang-ru">Биоразлагаемость</strong>
+                            </td>
+                            <td>
+                                <span class="lang-zh">含氟化物，自然界极难降解。</span>
+                                <span class="lang-en">Contains fluorides, extremely hard to degrade.</span>
+                                <span class="lang-ru">Содержит фториды, трудно разлагается.</span>
+                            </td>
+                            <td>
+                                <span class="lang-zh">采用再生面料及PP膜，材料可降解。</span>
+                                <span class="lang-en">Uses recycled fabric & PP membrane, degradable.</span>
+                                <span class="lang-ru">Использует переработанную ткань и PP мембрану.</span>
+                            </td>
+                            <td>
+                                <span class="lang-zh">契合纺织行业可持续发展趋势。</span>
+                                <span class="lang-en">Aligns with textile industry sustainability trends.</span>
+                                <span class="lang-ru">Соответствует тенденциям устойчивого развития.</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong class="lang-zh">初始静水压 (GB/T 4744)</strong>
+                                <strong class="lang-en">Initial Hydrostatic Pressure</strong>
+                                <strong class="lang-ru">Нач. Гидростатическое Давление</strong>
+                            </td>
+                            <td>＞200 kPa</td>
+                            <td>
+                                <strong class="text-eco">＞50 kPa</strong><br>
+                                <small class="lang-zh" style="color:var(--text-muted)">(原膜最高测试值 120 kPa)</small>
+                                <small class="lang-en" style="color:var(--text-muted)">(Membrane max: 120 kPa)</small>
+                                <small class="lang-ru" style="color:var(--text-muted)">(Макс. для мембраны: 120 кПа)</small>
+                            </td>
+                            <td>
+                                <span class="lang-zh">ePP高于冲锋衣国标1级要求，满足常规防暴雨需求。</span>
+                                <span class="lang-en">ePP exceeds national Level 1 standards, meeting regular heavy rain protection needs.</span>
+                                <span class="lang-ru">ePP превышает нац. стандарты уровня 1, удовлетворяя потребности в защите от дождя.</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong class="lang-zh">耐水洗衰减</strong>
+                                <strong class="lang-en">Wash Resistance</strong>
+                                <strong class="lang-ru">Стойкость к Стирке</strong>
+                            </td>
+                            <td>
+                                <span class="lang-zh">多次水洗衰减极低。</span>
+                                <span class="lang-en">Extremely low degradation after washing.</span>
+                                <span class="lang-ru">Крайне низкое ухудшение после стирки.</span>
+                            </td>
+                            <td>
+                                <strong class="text-eco">
+                                    <span class="lang-zh">4N标准洗3次后 ＞40 kPa</span>
+                                    <span class="lang-en">＞40 kPa after 3x 4N washes</span>
+                                    <span class="lang-ru">＞40 кПа после 3 стирок (4N)</span>
+                                </strong>
+                            </td>
+                            <td>
+                                <span class="lang-zh">较常规无氟材料有显著提升，性能保持率符合国标预期。</span>
+                                <span class="lang-en">Significant improvement over regular fluorine-free materials, maintaining compliance.</span>
+                                <span class="lang-ru">Значительное улучшение по сравнению с обычными материалами без фтора.</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong class="lang-zh">透湿量 (倒杯法)</strong>
+                                <strong class="lang-en">Moisture Permeability</strong>
+                                <strong class="lang-ru">Паропроницаемость</strong>
+                            </td>
+                            <td>15000 - 20000+ g/(m²·24h)</td>
+                            <td>
+                                <strong class="text-eco">＞6000 g/(m²·24h)</strong>
+                            </td>
+                            <td>
+                                <span class="lang-zh">可满足中低强度户外运动及日常通勤的排湿舒适需求。</span>
+                                <span class="lang-en">Meets the moisture-wicking comfort needs of low/mid-intensity outdoor and daily commuting.</span>
+                                <span class="lang-ru">Удовлетворяет потребности в отводе влаги при активности низкой и средней интенсивности.</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong class="lang-zh">生产与应用成本</strong>
+                                <strong class="lang-en">Production Cost</strong>
+                                <strong class="lang-ru">Себестоимость</strong>
+                            </td>
+                            <td>
+                                <span class="lang-zh">工艺导致成本较高。</span>
+                                <span class="lang-en">Complex processes lead to higher costs.</span>
+                                <span class="lang-ru">Сложные процессы ведут к высоким затратам.</span>
+                            </td>
+                            <td>
+                                <span class="lang-zh">实现低成本规模化量产。</span>
+                                <span class="lang-en">Achieved low-cost mass production.</span>
+                                <span class="lang-ru">Достигнуто массовое производство с низкими затратами.</span>
+                            </td>
+                            <td>
+                                <span class="lang-zh">降低了环保微孔膜的生产成本，具备稳定批量供货条件。</span>
+                                <span class="lang-en">Lowers eco-membrane costs, providing stable batch supply conditions.</span>
+                                <span class="lang-ru">Снижает стоимость эко-мембран, обеспечивая стабильные поставки.</span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- 板块四：应用领域 -->
+        <section class="animate-up">
+            <h2 class="lang-zh">产品应用边界</h2>
+            <h2 class="lang-en">Application Scenarios</h2>
+            <h2 class="lang-ru">Сферы Применения</h2>
+            
+            <p class="lang-zh">得益于成熟的工艺体系，目前主推的 260T 及 150D 再生复合面料，可完美直供以下终端领域：</p>
+            <p class="lang-en">Thanks to mature process systems, our recommended 260T and 150D recycled laminated fabrics can directly supply the following fields:</p>
+            <p class="lang-ru">Благодаря отработанным технологиям, наши ткани 260T и 150D могут напрямую поставляться в следующие сферы:</p>
+
+            <div class="app-grid">
+                <div class="app-card">
+                    <!-- 占位图 3 -->
+                    <div class="image-placeholder img-detail">
+                        <span class="lang-zh">[图片占位 3：轻户外冲锋衣/防风夹克成衣图]</span>
+                        <span class="lang-en">[Image Placeholder 3: Outdoor hardshell/jacket]</span>
+                        <span class="lang-ru">[Место 3: Легкая куртка/Ветровка]</span>
+                    </div>
+                    <h3 class="lang-zh">中高端轻户外服装</h3>
+                    <h3 class="lang-en">Mid-to-High-End Light Outdoor Apparel</h3>
+                    <h3 class="lang-ru">Легкая Верхняя Одежда Премиум Класса</h3>
+                    <p class="lang-zh">合规平替被禁产品，完美契合冲锋衣、风衣、城市通勤夹克需求。</p>
+                    <p class="lang-en">Compliant alternatives for hardshells, windbreakers, and urban commuting jackets.</p>
+                    <p class="lang-ru">Соответствующие стандартам альтернативы для курток и ветровок.</p>
+                </div>
+                <div class="app-card">
+                    <!-- 占位图 4 -->
+                    <div class="image-placeholder img-detail">
+                        <span class="lang-zh">[图片占位 4：特种防护/医疗装备图]</span>
+                        <span class="lang-en">[Image Placeholder 4: Special protection/Medical gear]</span>
+                        <span class="lang-ru">[Место 4: Спецзащита/Медицинская одежда]</span>
+                    </div>
+                    <h3 class="lang-zh">特种作业与防护装备</h3>
+                    <h3 class="lang-en">Special Operations & Protection Gear</h3>
+                    <h3 class="lang-ru">Специальное Защитное Снаряжение</h3>
+                    <p class="lang-zh">利用 ePP 优异的化学稳定性与防护屏障功能，拓展至医疗防护、化工等专业环境。</p>
+                    <p class="lang-en">Leveraging ePP's excellent chemical stability for medical and chemical protection.</p>
+                    <p class="lang-ru">Использование превосходной химической стабильности ePP для медицинской защиты.</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- 底部 Footer -->
+    <footer>
+        <!-- 中文版 Footer (仅在中文语言下显示) -->
+        <div class="footer-info lang-zh">
+            <h3>丹东优耐特纺织品有限公司</h3>
+            <p><strong>地址：</strong>中国·辽宁·丹东市集环路汤池工业园95号（118003）</p>
+            <p><strong>电话：</strong>+86 415-6254258</p>
+            <p><strong>邮箱：</strong>info@uniktex.com.cn</p>
+            <p><strong>官网：</strong>www.uniktex.com.cn</p>
+        </div>
+
+        <!-- 英文/俄文版 Footer (在EN和RU语言下显示) -->
+        <div class="footer-info lang-en footer-en">
+            <h3>UNIK-Tex</h3>
+            <p><strong>Company:</strong> Dandong UNIK-Tex Co., Ltd.</p>
+            <p><strong>Address:</strong> No.95, Tangchi Industrial Park, Jihuan Road, Dandong, Liaoning, China (118003)</p>
+            <p><strong>Tel:</strong> +86 415-6254258</p>
+            <p><strong>Email:</strong> info@uniktex.com.cn</p>
+            <p><strong>Website:</strong> www.uniktex.com.cn</p>
+        </div>
+    </footer>
+
+    <script>
+        // 多语言切换逻辑
+        function switchLang(lang) {
+            document.body.className = 'lang-' + lang;
+            
+            document.getElementById('btn-zh').className = '';
+            document.getElementById('btn-en').className = '';
+            document.getElementById('btn-ru').className = '';
+            document.getElementById('btn-' + lang).className = 'active';
+        }
+
+        // 丝滑滚动出现动效 (Intersection Observer)
+        document.addEventListener('DOMContentLoaded', () => {
+            const observerOptions = {
+                threshold: 0.1, // 元素出现 10% 即触发
+                rootMargin: "0px 0px -50px 0px"
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        // 触发后即可取消观察，保持可见
+                        observer.unobserve(entry.target); 
+                    }
+                });
+            }, observerOptions);
+
+            const animatedElements = document.querySelectorAll('.animate-up');
+            animatedElements.forEach(el => observer.observe(el));
+        });
+    </script>
+</body>
+</html>
