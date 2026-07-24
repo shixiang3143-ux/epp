@@ -80,7 +80,7 @@
         }
         .hero-bg {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background-image: url('pic1.jpg');
+            background-image: url('./pic1.jpg');
             background-size: cover; background-position: center;
             animation: slowZoom 18s infinite alternate ease-in-out; z-index: 1;
         }
@@ -155,6 +155,28 @@
         .app-card:hover { transform: translateY(-10px); border-color: var(--primary-eco); box-shadow: 0 15px 30px rgba(0,0,0,0.6), 0 0 15px rgba(46, 204, 113, 0.1); }
         .app-card h3 { color: var(--text-main); margin: 15px 0; font-size: 1.3rem; }
 
+        /* --- 新增：便当盒 (Bento Box) 实力回顾矩阵样式 --- */
+        .bento-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-top: 30px; }
+        .bento-card { background: rgba(255,255,255,0.02); border: 1px solid var(--border-color); border-radius: 20px; padding: 30px; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; transition: all var(--transition-speed); position: relative; overflow: hidden; }
+        .bento-card:hover { border-color: var(--primary-eco); transform: translateY(-5px); box-shadow: 0 10px 30px rgba(46, 204, 113, 0.1); background: rgba(46, 204, 113, 0.02); }
+        .bento-span-2 { grid-column: span 2; }
+        .bento-span-3 { grid-column: span 3; }
+        .bento-title { font-size: 1.1rem; color: var(--text-muted); margin-bottom: 10px; font-weight: 600; }
+        .bento-number { font-size: 3.2rem; font-weight: 800; color: var(--text-main); margin: 10px 0; line-height: 1.1; letter-spacing: -1px; }
+        .bento-number small { font-size: 1.2rem; font-weight: 600; color: var(--text-muted); margin-left: 5px; }
+        .bento-text-large { font-size: 2.2rem; letter-spacing: normal; }
+        .bento-desc { font-size: 0.95rem; color: var(--text-muted); line-height: 1.5; }
+
+        /* --- 新增：核心商业价值卡片样式 --- */
+        .value-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 30px; }
+        .value-card { background: linear-gradient(145deg, rgba(30,30,30,0.6) 0%, rgba(46,204,113,0.05) 100%); border: 1px solid var(--border-color); border-radius: 16px; padding: 0; overflow: hidden; transition: all var(--transition-speed); }
+        .value-card:hover { border-color: var(--primary-eco); box-shadow: 0 15px 30px rgba(0,0,0,0.4); transform: translateY(-8px); }
+        .value-img { width: 100%; height: 260px; object-fit: cover; border-bottom: 1px solid var(--border-color); }
+        .value-content { padding: 35px; }
+        .value-content h3 { font-size: 1.5rem; color: var(--text-main); margin-bottom: 12px; font-weight: 700; }
+        .value-content h4 { font-size: 1.15rem; color: var(--primary-eco); margin-bottom: 15px; font-weight: 600; }
+        .value-content p { font-size: 1.05rem; margin-bottom: 0; }
+
         footer { background-color: #0a0a0a; border-top: 1px solid var(--border-color); padding: 60px 20px; text-align: center; margin-top: 20px; }
         .footer-info { max-width: 800px; margin: 0 auto; }
         .footer-info h3 { color: var(--text-main); margin-bottom: 25px; letter-spacing: 1px; font-size: 1.5rem; }
@@ -179,6 +201,9 @@
             .bar-name { margin-bottom: 5px; }
             .bar-note { padding-left: 0; }
             .app-grid { gap: 20px; }
+            /* 手机端矩阵变单列 */
+            .bento-grid { grid-template-columns: 1fr; }
+            .bento-span-2, .bento-span-3 { grid-column: span 1; }
             body, a, button, .lang-switch button { cursor: auto; }
         }
     </style>
@@ -234,8 +259,8 @@
                 </a>
                 
                 <a href="https://extension.psu.edu/epa-finalizes-drinking-water-standards-for-six-pfas" target="_blank" class="news-link">
-                    <span class="news-title">California Signs PFAS in Textile Articles Bill AB 1817(PFAS)</span>
-                    <span class="news-url">https://www.cps.bureauveritas.com/newsroom/california-signs-pfas-textile-articles-bill-ab-1817</span>
+                    <span class="news-title">EPA Finalizes Drinking Water Standards for Six PFAS</span>
+                    <span class="news-url">https://extension.psu.edu/epa-finalizes-drinking-water-standards-for-six-pfas</span>
                 </a>
             </div>
 
@@ -255,7 +280,6 @@
             <p class="lang-zh">我们在厚度仅为 3.6μm 的微孔膜表面创新涂覆透湿PU树脂，形成双组份防护结构；成功在无氟体系下实现了透湿与耐水压性能的客观平衡。</p>
             <p class="lang-en">We innovatively coated a moisture-permeable PU resin on the surface of the 3.6μm microporous membrane to form a bi-component protective structure.</p>
             
-            <!-- 这里直接换成了真实的 pic2.jpg 代码！ -->
             <img src="./pic2.jpg" alt="UNIK-Tex 面料工艺细节" style="width: 100%; height: auto; border-radius: 12px; margin: 30px 0; box-shadow: 0 10px 30px rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.05);">
         </section>
 
@@ -476,7 +500,6 @@
 
             <div class="app-grid">
                 <div class="app-card">
-                    <!-- 这里直接换成了真实的 pic3.jpg 代码！ -->
                     <img src="./pic3.jpg" alt="中高端轻户外服装" style="width: 100%; height: auto; border-radius: 12px; margin-bottom: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.3);">
                     
                     <h3 class="lang-zh">中高端轻户外服装</h3>
@@ -484,12 +507,144 @@
                     <p class="lang-zh">完美契合冲锋衣、风衣、城市通勤夹克需求。</p>
                 </div>
                 <div class="app-card">
-                    <!-- 这里直接换成了真实的 pic4.jpg 代码！ -->
                     <img src="./pic4.jpg" alt="特种作业与防护装备" style="width: 100%; height: auto; border-radius: 12px; margin-bottom: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.3);">
                     
                     <h3 class="lang-zh">特种作业与防护装备</h3>
                     <h3 class="lang-en">Special Operations & Protection Gear</h3>
                     <p class="lang-zh">利用 ePP 优异的化学稳定性，拓展至专业环境。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. 实力回顾矩阵 (苹果风 Bento Box) -->
+        <section class="animate-up">
+            <h2 class="lang-zh">实力回顾：卓越，一目了然。</h2>
+            <h2 class="lang-en">Performance Highlights: Excellence at a glance.</h2>
+            <h2 class="lang-ru">Ключевые Характеристики: Совершенство с первого взгляда.</h2>
+
+            <div class="bento-grid">
+                <!-- 卡片 1 (大) -->
+                <div class="bento-card bento-span-2">
+                    <div class="bento-title">
+                        <span class="lang-zh">环保合规绝对防线</span>
+                        <span class="lang-en">Absolute Eco-Compliance</span>
+                        <span class="lang-ru">Абсолютное Эко-Соответствие</span>
+                    </div>
+                    <div class="bento-number text-eco">100%</div>
+                    <div class="bento-desc">
+                        <span class="lang-zh">无氟 (PFAS-Free)。彻底告别“永久性化学物”，完美规避退市风险。</span>
+                        <span class="lang-en">PFAS-Free. Complete compliance with zero "forever chemicals".</span>
+                        <span class="lang-ru">Без Фтора (PFAS-Free). Полный отказ от «вечных химикатов», идеальное решение для избежания риска запрета на рынке.</span>
+                    </div>
+                </div>
+                
+                <!-- 卡片 2 (中) -->
+                <div class="bento-card">
+                    <div class="bento-title">
+                        <span class="lang-zh">持久耐洗的底气</span>
+                        <span class="lang-en">Durable Wash Resistance</span>
+                        <span class="lang-ru">Долговечность при Стирке</span>
+                    </div>
+                    <div class="bento-number">>40<small>kPa</small></div>
+                    <div class="bento-desc">
+                        <span class="lang-zh">洗后静水压。历经 3 次 4N 严苛水洗，防护力依然稳超国标1级。</span>
+                        <span class="lang-en">Post-wash. Endures rigorous washing while far exceeding Level 1 standards.</span>
+                        <span class="lang-ru">После Стирки. Сохраняет высокие защитные свойства, значительно превышающие стандарты Уровня 1.</span>
+                    </div>
+                </div>
+
+                <!-- 卡片 3 (中) -->
+                <div class="bento-card">
+                    <div class="bento-title">
+                        <span class="lang-zh">打破闷热的卓越透湿</span>
+                        <span class="lang-en">Excellent MVTR</span>
+                        <span class="lang-ru">Отличная Паропроницаемость</span>
+                    </div>
+                    <div class="bento-number">>6000<small>g/m²</small></div>
+                    <div class="bento-desc">
+                        <span class="lang-zh">动态透湿。高效水汽传导，暴汗不闷，持久干爽舒适。</span>
+                        <span class="lang-en">Breathability. Dynamic moisture wicking for ultimate comfort.</span>
+                        <span class="lang-ru">Эффективный отвод влаги, предотвращающий парниковый эффект, для длительного комфорта.</span>
+                    </div>
+                </div>
+
+                <!-- 卡片 4 (小) -->
+                <div class="bento-card">
+                    <div class="bento-title">
+                        <span class="lang-zh">工业黄金比例</span>
+                        <span class="lang-en">Golden Ratio</span>
+                        <span class="lang-ru">Золотое Сечение</span>
+                    </div>
+                    <div class="bento-number text-eco">3.6<small>μm</small></div>
+                    <div class="bento-desc">
+                        <span class="lang-zh">极度轻薄。1.7g/m² 克重的黄金比例，极致轻盈无感。</span>
+                        <span class="lang-en">Ultra-thin. The golden ratio of light-weight performance.</span>
+                        <span class="lang-ru">Ультратонкость. Золотое сечение веса для невероятной легкости.</span>
+                    </div>
+                </div>
+
+                <!-- 卡片 5 (宽) -->
+                <div class="bento-card bento-span-3">
+                    <div class="bento-title">
+                        <span class="lang-zh">终极环保愿景</span>
+                        <span class="lang-en">Ultimate Eco-Vision</span>
+                        <span class="lang-ru">Эко-Видение</span>
+                    </div>
+                    <div class="bento-number text-eco bento-text-large">
+                        <span class="lang-zh">单一材质</span>
+                        <span class="lang-en">Mono-material</span>
+                        <span class="lang-ru">Мономатериал</span>
+                    </div>
+                    <div class="bento-desc">
+                        <span class="lang-zh">闭环回收。同族系复合面料，不给地球留负担。</span>
+                        <span class="lang-en">Recyclability. Closed-loop recycling for a greener planet.</span>
+                        <span class="lang-ru">Для Переработки. Замкнутый цикл переработки композитных тканей из одного семейства.</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 7. 核心商业价值 -->
+        <section class="animate-up">
+            <h2 class="lang-zh">核心商业价值：超越材料本身的长期承诺</h2>
+            <h2 class="lang-en">Core Commercial Value: A Long-term Commitment Beyond Materials</h2>
+            <h2 class="lang-ru">Ключевая Коммерческая Ценность: Долгосрочные Обязательства</h2>
+
+            <div class="value-grid">
+                <!-- 价值卡片 1 -->
+                <div class="value-card">
+                    <img src="./pic5.jpg" alt="合规出海" class="value-img">
+                    <div class="value-content">
+                        <h3 class="lang-zh">赋能品牌与供应链</h3>
+                        <h3 class="lang-en">Empowering Brands & Supply Chains</h3>
+                        <h3 class="lang-ru">Расширение Возможностей Брендов</h3>
+                        
+                        <h4 class="lang-zh text-eco">合规出海，护航全球化布局。</h4>
+                        <h4 class="lang-en text-eco">Compliant Global Expansion.</h4>
+                        <h4 class="lang-ru text-eco">Беспрепятственная Глобальная Экспансия.</h4>
+                        
+                        <p class="lang-zh">在欧美日益严苛的 PFAS（含氟聚合物）禁令下，材料的合规性已成为企业的生命线。采用 UNIK-Tex ePP 环保复合面料，意味着彻底消除违规退市与海关受阻的风险。我们以全面的技术指标打底，为服装品牌打通通往国际市场的“绿色通道”，确保品牌出海畅通无阻，稳固全球市场份额。</p>
+                        <p class="lang-en">Under the increasingly strict US and EU PFAS bans, material compliance is a corporate lifeline. Adopting UNIK-Tex ePP fabrics eliminates the risk of phase-out and customs hurdles. Backed by comprehensive technical indicators, we clear a "green channel" for brands to international markets, ensuring unhindered global expansion.</p>
+                        <p class="lang-ru">В условиях строгих запретов на PFAS в США и ЕС, соответствие материалов является жизненно важным. Использование тканей UNIK-Tex ePP устраняет риски запрета и таможенных препятствий, обеспечивая брендам «зеленый коридор» на международные рынки.</p>
+                    </div>
+                </div>
+
+                <!-- 价值卡片 2 -->
+                <div class="value-card">
+                    <img src="./pic6.jpg" alt="消费者与地球责任" class="value-img">
+                    <div class="value-content">
+                        <h3 class="lang-zh">消费者与地球责任</h3>
+                        <h3 class="lang-en">Consumer & Earth Responsibility</h3>
+                        <h3 class="lang-ru">Ответственность перед Потребителями</h3>
+                        
+                        <h4 class="lang-zh text-eco">敬畏自然，践行 ESG 社会责任。</h4>
+                        <h4 class="lang-en text-eco">Revering Nature, Practicing ESG Responsibility.</h4>
+                        <h4 class="lang-ru text-eco">Уважение к Природе, Экологическая Ответственность (ESG).</h4>
+                        
+                        <p class="lang-zh">户外运动的内核在于探索自然，而非破坏自然。ePP 面料以 100% 无氟、同族系复合极易回收的特性，在不牺牲核心防护性能的前提下，绝不给地球留下“永久性化学物”。这不仅是 UNIK-Tex 作为材料供应商的底线，更是助力终端品牌践行 ESG 责任、为后代守护绿水青山的坚定承诺。</p>
+                        <p class="lang-en">The core of outdoor sports is exploring nature, not destroying it. With 100% fluorine-free and easily recyclable properties, ePP leaves no "forever chemicals" behind without sacrificing protection. This is our firm commitment to helping brands fulfill their ESG responsibilities and protecting the planet for future generations.</p>
+                        <p class="lang-ru">Суть активного отдыха — исследование природы, а не ее разрушение. Наш 100% безфторный и перерабатываемый материал ePP не оставляет после себя «вечных химикатов», сохраняя при этом защитные свойства. Это наше обязательство по защите планеты для будущих поколений.</p>
+                    </div>
                 </div>
             </div>
         </section>
@@ -535,7 +690,7 @@
                         if(entry.target.classList.contains('comparison-chart')) {
                             entry.target.classList.add('visible');
                         }
-                        observer.unobserve(entry.target);
+                        observer.unختیobserve(entry.target);
                     }
                 });
             }, observerOptions);
