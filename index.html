@@ -60,17 +60,17 @@
         .container { max-width: 1200px; margin: 0 auto; padding: 50px 20px; }
         section { margin-bottom: 80px; background: var(--bg-surface); padding: 50px; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.05); }
         
-/* 开屏大图 */
+        /* 开屏全屏大图 */
         .hero-section {
             position: relative; 
             overflow: hidden; 
-            height: 100vh; /* 高度强制占满当前整个屏幕 */
-            width: 100vw; /* 宽度强制铺满整个屏幕 */
+            height: 100vh;
+            width: 100vw;
             left: 50%;
-            transform: translateX(-50%); /* 突破原有的网页居中限制，向两边延展铺满 */
-            border-radius: 0; /* 取消原本的圆角，变成直角全屏 */
-            border: none; /* 取消原本的边框 */
-            margin-top: -50px; /* 向上移动抵消间距，让图片完美滑动到顶部导航栏的下方 */
+            transform: translateX(-50%);
+            border-radius: 0;
+            border: none;
+            margin-top: -50px;
             margin-bottom: 80px;
             display: flex; 
             align-items: center; 
@@ -150,13 +150,6 @@
         tr:nth-child(even) { background-color: rgba(255,255,255,0.02); }
         tr:hover { background-color: rgba(46, 204, 113, 0.05); }
 
-        .image-placeholder {
-            width: 100%; background-color: #1a1a1a; border: 2px dashed var(--border-color);
-            display: flex; align-items: center; justify-content: center; color: #666; font-weight: 500; text-align: center; border-radius: 12px; margin: 30px 0; padding: 30px; transition: all 0.3s ease;
-        }
-        .image-placeholder:hover { border-color: var(--primary-eco); color: var(--primary-eco); background-color: rgba(46, 204, 113, 0.05); }
-        .img-detail { min-height: 250px; }
-
         .app-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 30px; }
         .app-card { background-color: rgba(255,255,255,0.02); border: 1px solid var(--border-color); border-radius: 12px; padding: 25px; text-align: center; transition: all var(--transition-speed); }
         .app-card:hover { transform: translateY(-10px); border-color: var(--primary-eco); box-shadow: 0 15px 30px rgba(0,0,0,0.6), 0 0 15px rgba(46, 204, 113, 0.1); }
@@ -178,7 +171,7 @@
 
         @media (max-width: 768px) {
             section { padding: 30px 20px; border-radius: 12px; margin-bottom: 40px; }
-            .hero-section { min-height: 400px; padding: 30px 20px; }
+            .hero-section { padding: 30px 20px; }
             .hero-title { font-size: 2rem; }
             .hero-subtitle { font-size: 1.1rem; }
             h2 { font-size: 1.5rem; }
@@ -205,7 +198,7 @@
 
     <main class="container">
         
-        <!-- 1. 开屏动效 -->
+        <!-- 1. 开屏动效全屏大图 -->
         <section class="hero-section">
             <div class="hero-bg"></div>
             <div class="hero-overlay"></div>
@@ -262,13 +255,11 @@
             <p class="lang-zh">我们在厚度仅为 3.6μm 的微孔膜表面创新涂覆透湿PU树脂，形成双组份防护结构；成功在无氟体系下实现了透湿与耐水压性能的客观平衡。</p>
             <p class="lang-en">We innovatively coated a moisture-permeable PU resin on the surface of the 3.6μm microporous membrane to form a bi-component protective structure.</p>
             
-            <div class="image-placeholder img-detail">
-                <span class="lang-zh">[图片占位 2：请上传并替换为 pic2.jpg (如：面料微观细节图或结构剖面图)]</span>
-                <span class="lang-en">[Image Placeholder 2: Please replace with pic2.jpg (Microscopic detail)]</span>
-            </div>
+            <!-- 这里直接换成了真实的 pic2.jpg 代码！ -->
+            <img src="./pic2.jpg" alt="UNIK-Tex 面料工艺细节" style="width: 100%; height: auto; border-radius: 12px; margin: 30px 0; box-shadow: 0 10px 30px rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.05);">
         </section>
 
-        <!-- 4. 核心数据量化对比 (包含进度条方案A 和 客观数据表) -->
+        <!-- 4. 核心数据量化对比 -->
         <section class="animate-up">
             <h2 class="lang-zh">核心指标：客观技术评估 (ePTFE vs. ePP)</h2>
             <h2 class="lang-en">Core Indicators: Objective Technical Assessment</h2>
@@ -278,9 +269,8 @@
             <p class="lang-en">Based on objective comparison between mainstream ePTFE products and our eco-friendly ePP, providing a rigorous basis for selection.</p>
             <p class="lang-ru">Основываясь на объективном сравнении основных продуктов ePTFE и нашего экологичного ePP, мы предоставляем строгую основу для выбора.</p>
 
-            <!-- 动态数据对比条 (方案A) -->
+            <!-- 动态数据对比条 -->
             <div class="comparison-chart">
-                <!-- 维度 1 -->
                 <div class="metric-block">
                     <h3 class="metric-title">
                         <span class="lang-zh">全球环保法规准入率 (AB1817 / REACH)</span>
@@ -322,7 +312,6 @@
                     </div>
                 </div>
 
-                <!-- 维度 2 -->
                 <div class="metric-block">
                     <h3 class="metric-title">
                         <span class="lang-zh">材料级化学可回收率 (单一材质特性)</span>
@@ -364,7 +353,6 @@
                     </div>
                 </div>
 
-                <!-- 维度 3 -->
                 <div class="metric-block">
                     <h3 class="metric-title">
                         <span class="lang-zh">初始静水压极限保护 (GB/T 4744)</span>
@@ -402,7 +390,6 @@
                     </div>
                 </div>
 
-                <!-- 维度 4 -->
                 <div class="metric-block">
                     <h3 class="metric-title">
                         <span class="lang-zh">动态透湿能力 (倒杯法)</span>
@@ -489,19 +476,17 @@
 
             <div class="app-grid">
                 <div class="app-card">
-                    <div class="image-placeholder img-detail">
-                        <span class="lang-zh">[图片占位 3：请替换为 pic3.jpg (轻户外成衣图)]</span>
-                        <span class="lang-en">[Image Placeholder 3: pic3.jpg]</span>
-                    </div>
+                    <!-- 这里直接换成了真实的 pic3.jpg 代码！ -->
+                    <img src="./pic3.jpg" alt="中高端轻户外服装" style="width: 100%; height: auto; border-radius: 12px; margin-bottom: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.3);">
+                    
                     <h3 class="lang-zh">中高端轻户外服装</h3>
                     <h3 class="lang-en">Mid-to-High-End Light Outdoor Apparel</h3>
                     <p class="lang-zh">完美契合冲锋衣、风衣、城市通勤夹克需求。</p>
                 </div>
                 <div class="app-card">
-                    <div class="image-placeholder img-detail">
-                        <span class="lang-zh">[图片占位 4：请替换为 pic4.jpg (特种装备图)]</span>
-                        <span class="lang-en">[Image Placeholder 4: pic4.jpg]</span>
-                    </div>
+                    <!-- 这里直接换成了真实的 pic4.jpg 代码！ -->
+                    <img src="./pic4.jpg" alt="特种作业与防护装备" style="width: 100%; height: auto; border-radius: 12px; margin-bottom: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.3);">
+                    
                     <h3 class="lang-zh">特种作业与防护装备</h3>
                     <h3 class="lang-en">Special Operations & Protection Gear</h3>
                     <p class="lang-zh">利用 ePP 优异的化学稳定性，拓展至专业环境。</p>
